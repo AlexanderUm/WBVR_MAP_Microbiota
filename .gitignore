@@ -1,0 +1,8 @@
+data
+output
+resourses
+data/raw
+data/metadata
+output/plots
+output/objects
+.ipynb_checkpoints
