@@ -7,8 +7,7 @@
 #1. Add directories 
 l.dir <- c("scr", "data", "output", "resourses", 
            "scr/functions", 
-           "data/Dada2_input", "data/metadata", 
-           "output/plots", "output/objects")
+           "data/Dada2_input", "data/metadata")
 
 for (d in l.dir) {
     dir.create(d, showWarnings = FALSE)

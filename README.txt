@@ -14,6 +14,31 @@
  # Analysis reproduciton# 
  ########################
 
-1. Clone the gitHub repsitory (please consult a tutorial reguarding installation and use of gitHub tools). 
+# 1. Clone the gitHub repsitory (please consult a tutorial reguarding installation and use of gitHub tools). 
 
-2. Pull the data from 
+git clone https://github.com/AlexanderUm/WBVR_MAP_Microbiota.git
+
+# 2. Run script to make directories 
+
+cd WBVR_MAP_Microbiota/ 
+
+Rscript make_project_structure.R 
+
+# 3. Copy fastq.gz files into data/Dada2_input
+
+!!!! Destcribe how to pull it from the database !!!
+
+# 4. Copy sedding data into data/
+
+# 5. Copy metadata into data/metadata
+
+# 6. Copy refference database for taxonamy assignment to resourses/ folder 
+#    We are using silva_nr_v138_train_set.fa.gz 
+
+# 6. Make run_all.sh executable 
+
+chmod +x run_all.sh 
+
+# 7. Run the script 
+
+bash run_all.sh
