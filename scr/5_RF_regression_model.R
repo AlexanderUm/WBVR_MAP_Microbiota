@@ -50,7 +50,7 @@ dev.off()
 # Mtry tunning 
 ##############
 
-source("scr/functions/Tree_Mtry_Plot.r")
+source("scr/functions/Tree_Mtry_Plot.R")
 
 cl <- makeCluster(24)
 
@@ -73,13 +73,13 @@ ggsave(plot = tree.mtry.plot.all, filename = "output/5_RF_regression_model/mtry_
 #######################################################################
 
 # Create matrix with not overlaping samples (length 10)
-source("scr/functions/rand_draw_mat.r")
+source("scr/functions/rand_draw_mat.R")
 
 rand.samp.reg <- rand_draw_mat(Samples_list = rownames(rf.data.css.01), Number_of_samp = 10)
 
 
 # Build models and predict values
-source("scr/functions/rf_and_test.r")
+source("scr/functions/rf_and_test.R")
 
 cl <- makeCluster(56)
 
