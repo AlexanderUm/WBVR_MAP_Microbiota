@@ -28,7 +28,8 @@ source("scr/functions/pcoa_plot_data.R")
 
 # Extract data
 all.samp <- pcoa_plot_data(phyloseq = ps.tf.css.01, 
-                           factors = c("AgeMonth", "WeightedScoreII", "Year", "Diet"), 
+                           factors = c("Year", "Diet"), 
+                           vectors = c("AgeMonth", "WeightedScoreII"),
                            arrow_scale_cof = 3, 
                            ncore = 36)
 
@@ -66,7 +67,8 @@ ps.solid <- prune_samples(samples = ps.tf.css.01@sam_data$Diet %in% "Solid",
 
 # Extract data
 solid.samp <- pcoa_plot_data(phyloseq = ps.solid, 
-                           factors = c("AgeMonth", "WeightedScoreII", "Year"), 
+                           factors = c("Year"), 
+                           vectors = c("AgeMonth", "WeightedScoreII"), 
                            arrow_scale_cof = 3, 
                            ncore = 36)
 

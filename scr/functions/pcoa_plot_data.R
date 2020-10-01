@@ -3,7 +3,7 @@
 # * bray dissimularity matrix is used for ordination 
 ################################################################
 
-pcoa_plot_data <- function(phyloseq, factors, arrow_scale_cof, ncore, nperm) {
+pcoa_plot_data <- function(phyloseq, factors, vectors, arrow_scale_cof, ncore, nperm) {
     
     # Extract data
     ###############
@@ -15,7 +15,13 @@ pcoa_plot_data <- function(phyloseq, factors, arrow_scale_cof, ncore, nperm) {
     meta.d <- data.frame(sample_data(phyloseq))
     
     # Select variables to test 
-    meta.d.fit <- meta.d[, factors]
+    
+    meta.d.fit <- mutate_all(meta.d[, c(factors, vectors)], as.character)
+    
+    meta.d.fit <- mutate_at(meta.d.fit, factors, as.factor)
+    
+    meta.d.fit <- mutate_at(meta.d.fit, vectors, as.numeric)
+    
     
     # Construct ordination
     #######################
