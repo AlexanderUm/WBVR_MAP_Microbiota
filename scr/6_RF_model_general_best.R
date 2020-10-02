@@ -123,7 +123,7 @@ ggsave(filename = "output/6_RF_general_model/best_cat_rf.pdf",
 # Prepare data for RF model 
 ###########################
 
-ps.tf.css.01 <- readRDS("output/objects/phyloseq/ps_tf_css_011.RDS")
+ps.tf.css.01 <- readRDS("output/3_filtering_mormalization/ps_tf2_css.RDS")
 
 source("scr/functions/data_for_rf.R")
 
@@ -142,7 +142,7 @@ rf.data.css$Shedder <- as.factor(ifelse(rf.data.css$Shedder < 0.51, "Low", "High
 # Determine best mtry and ntree for general rf model
 ####################################################
 
-source("scr/functions/Tree_Mtry_Plot.r")
+source("scr/functions/Tree_Mtry_Plot.R")
 
 cl <- makeCluster(36)
 
