@@ -20,7 +20,7 @@ dir.create("output/6_RF_general_model")
 # Extract and format data for RF model
 ######################################
 
-ps.tf.css.01 <- readRDS("output/objects/phyloseq/ps_tf_css_011.RDS")
+ps.tf.css.01 <- readRDS("output/3_filtering_mormalization/ps_tf2_css.RDS")
 
 source("scr/functions/data_for_rf.R")
 
