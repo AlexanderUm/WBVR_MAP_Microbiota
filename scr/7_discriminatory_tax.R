@@ -42,26 +42,26 @@ rf.data.css$Shedder <- as.factor(ifelse(rf.data.css$Shedder < 0.51, "Low", "High
 # Adjust input data 
 # Current row names give an error 
 
-rf.data.perm <- rf.data.css
+# rf.data.perm <- rf.data.css
 
-rownames(rf.data.perm) <- paste0("Sample_", 1:nrow(rf.data.css))
+# rownames(rf.data.perm) <- paste0("Sample_", 1:nrow(rf.data.css))
 
 
 # Build the random forest model with optimal parameters
 # and find taxa significantly contributing to classification 
 ############################################################
 
-# set.seed(43957)
-# rf.perm.obj <- rfPermute(Shedder ~ ., 
-#                          data = rf.data.perm, 
-#                          importance=TRUE,
-#                          proximity=TRUE, 
-#                          mtry = 284,
-#                          ntree= 15001, 
-#                          nrep = 999,
-#                          num.cores = 32)
+set.seed(43957)
+rf.perm.obj <- rfPermute(Shedder ~ ., 
+                         data = rf.data.perm, 
+                         importance=TRUE,
+                         proximity=TRUE, 
+                         mtry = 565,
+                         ntree= 15001, 
+                         nrep = 999,
+                         num.cores = 32)
 
-# save(rf.perm.obj, file = "output/plots/7_discriminatory_tax/srf_perm_obj.RData")
+save(rf.perm.obj, file = "output/plots/7_discriminatory_tax/srf_perm_obj.RData")
 
 
 # Extract features that are significantly affecting mean accuracy and the Gini index
