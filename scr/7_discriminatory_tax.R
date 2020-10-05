@@ -39,10 +39,10 @@ colnames(rf.data.css)[colnames(rf.data.css) %in% "WeightedScoreII"] <- "Shedder"
 
 rf.data.css$Shedder <- as.factor(ifelse(rf.data.css$Shedder < 0.51, "Low", "High"))
 
-# Adjust input data 
-# Current row names give an error 
+rf.data.perm <- rf.data.css
 
-# rf.data.perm <- rf.data.css
+# Adjust input data 
+# Current row names give an error  
 
 # rownames(rf.data.perm) <- paste0("Sample_", 1:nrow(rf.data.css))
 
