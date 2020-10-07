@@ -114,9 +114,10 @@ w.score2.p <- ggplot(w.score2.dp, aes(x=Var1, y=Freq)) +
   geom_hline(yintercept = mean(w.score2.dp$Freq) + sd(w.score2.dp$Freq), color="blue", linetype = "longdash") +
   geom_hline(yintercept = mean(w.score2.dp$Freq) - sd(w.score2.dp$Freq), color="blue", linetype = "longdash") + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) + 
-  ylim(0, 2.3) + 
+  #ylim(0, 2.3) + 
   ylab("Weighted score") + 
-  xlab("Cow ID")
+  xlab("Cow ID") + 
+  coord_flip()
 
 # Plot w.score 
 w.score1.dp <- data.frame(w.score)
@@ -130,14 +131,18 @@ w.score1.p <- ggplot(w.score1.dp, aes(x=Var1, y=Freq)) +
   geom_hline(yintercept = mean(w.score1.dp$Freq) + sd(w.score1.dp$Freq), color="blue", linetype = "longdash") +
   geom_hline(yintercept = mean(w.score1.dp$Freq) - sd(w.score1.dp$Freq), color="blue", linetype = "longdash") + 
   theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + 
-  ylim(0, 2.3) + 
+  #ylim(0, 2.3) + 
   ylab("Weighted score") + 
-  xlab("Cow ID")
+  xlab("Cow ID") + 
+  coord_flip()
 
 # Combine and save plots
 w.score.pcomb <- plot_grid(w.score2.p, w.score1.p)
 
 ggsave(filename = "output/1_shedding_analysis/w_score_comb.pdf", w.score.pcomb, width = 7, height = 3.5)
 
-ggsave(filename = "output/1_shedding_analysis/w_score_comb.png", w.score.pcomb, width = 7, height = 3.5, dpi = 400)
+ggsave(filename = "output/1_shedding_analysis/w_score_comb.jpg", w.score.pcomb, width = 7, height = 3.5, dpi = 400)
 
+ggsave(filename = "output/1_shedding_analysis/w_score_main.pdf", w.score2.p, width = 4, height = 3.5)
+
+ggsave(filename = "output/1_shedding_analysis/w_score_main.jpg", w.score2.p, width = 4, height = 3.5, dpi = 400)
