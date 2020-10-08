@@ -59,9 +59,9 @@ rf.perm.obj <- rfPermute(Shedder ~ .,
                          mtry = 565,
                          ntree= 15001, 
                          nrep = 999,
-                         num.cores = 32)
+                         num.cores = 16)
 
-save(rf.perm.obj, file = "output/plots/7_discriminatory_tax/srf_perm_obj.RData")
+save(rf.perm.obj, file = "output/7_discriminatory_tax/srf_perm_obj.RData")
 
 
 # Extract features that are significantly affecting mean accuracy and the Gini index

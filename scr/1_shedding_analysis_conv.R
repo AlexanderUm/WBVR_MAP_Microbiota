@@ -99,6 +99,15 @@ names(corr.w.score.out) <- c("Pval", "Estimate")
 write.csv(corr.w.score.out, "output/1_shedding_analysis/corr_w_scores.csv")
 
 
+# Save shedding scores as a separate table 
+##########################################
+all.wscore <- as.data.frame(cbind(w.score, w.score2))
+
+colnames(all.wscore) <- c("Wieghted SISs I", "Wieghted SISs II")
+
+write_csv(x = all.wscore, path = "output/1_shedding_analysis/she")
+
+
 # Visualize shedding scores 
 ############################
 

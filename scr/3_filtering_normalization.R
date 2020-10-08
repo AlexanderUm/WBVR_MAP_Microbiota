@@ -193,6 +193,12 @@ sum.t2<- as.data.frame(cbind(as.character(sum.t$Var2),
 
 sum.t3 <- spread(sum.t2, V2, V3)
 
-summ.save <- cbind(sum.t3,  round(t(apply(phy.plot.d2, 1, ci)), 2))
+sum.t3 <- sum.t3[order(trimWhiteSpace(as.character(sum.t3$V1))), ]
+
+ci.t3 <- round(t(apply(phy.plot.d2, 1, ci)), 2)
+
+ci.t3 <- ci.t3[order(rownames(ci.t3)), ]
+
+summ.save <- cbind(sum.t3,  ci.t3)
 
 write_csv(x = summ.save, path = "output/3_filtering_mormalization/phylum_abundance.csv")
