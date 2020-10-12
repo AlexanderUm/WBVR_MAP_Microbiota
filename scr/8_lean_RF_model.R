@@ -19,7 +19,7 @@ dir.create("output/8_lean_RF_model")
 # from phyloseq using a custom function 
 #########################################
 
-ps.tf.css.01 <- readRDS("output/objects/phyloseq/ps_tf_css_011.RDS")
+ps.tf.css.01 <- readRDS("output/3_filtering_mormalization/ps_tf2_css.RDS")
 
 source("scr/functions/data_for_rf.R")
 
@@ -34,7 +34,7 @@ rf.data.css.01$WeightedScoreII <- as.numeric(as.character(rf.data.css.01$Weighte
 # Subset only significantly contributing taxa 
 #############################################
 
-sig.tax <- read.csv("output/plots/7_discriminatory_tax/sig_contr_taxa.csv")
+sig.tax <- read.csv("output/7_discriminatory_tax/sig_contr_taxa.csv")
 
 rf.data.css.sig <- rf.data.css.01[, as.character(sig.tax$X)]
 
@@ -65,7 +65,7 @@ for (s in 4:(length(score)-4)) {
 # Make RF models 
 ################
 
-cl <- makeCluster(24)
+cl <- makeCluster(16)
 registerDoParallel(cl)
 
 rf.cat.l.res <- foreach(p=4:length(rfd.cat.l),.packages = "randomForest") %dopar% {

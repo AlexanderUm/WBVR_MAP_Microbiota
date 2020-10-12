@@ -103,8 +103,10 @@ for (i in 1:5) {
 stopCluster(cl)
 
 
-save(rf.reg.res, file = "output/5_RF_regression_model/samples_reg_out.Rdata")
+# save(rf.reg.res, file = "output/5_RF_regression_model/samples_reg_out.Rdata")
 
+
+load("output/5_RF_regression_model/samples_reg_out.Rdata")
 
 #Extract and optimize data for ploting 
 ######################################
@@ -136,6 +138,37 @@ reg.pd.line <- data.frame(aggregate(reg.pd$rf.reg.res..i.., list(reg.pd$CowN), m
 colnames(reg.pd.line) <- c("CowN", "PredV")
 
 
+# Summary of the data 
+######################
+
+# Correlation between avarages of predicted score and actual score 
+cor.d <- inner_join(reg.pd.line, reg.pd, by = "CowN")
+
+cor.d1 <- cor.d[!duplicated(cor.d$CowN), ]
+
+# Summary of differences between predicted and actuall value 
+predv.dif.summ <- summary(abs(reg.pd$rf.reg.res..i.. - reg.pd$WeightedScoreII))
+
+predv.dif.summ <- as.data.frame(cbind(names(predv.dif.summ), 
+                                      as.vector(predv.dif.summ)))
+
+write.csv(predv.dif.summ, "output/5_RF_regression_model/predv_dif_summ.csv")
+
+# Correlations 
+c.pred.score <- cor.test(cor.d1$PredV, cor.d1$WeightedScoreII)
+
+c.sdiv.age <- cor.test(reg.pd$rf.reg.res..i.. - reg.pd$WeightedScoreII, reg.pd$AgeMonth)
+
+c.sdiv.cow <- cor.test(reg.pd$rf.reg.res..i.. - reg.pd$WeightedScoreII, as.numeric(reg.pd$CowN))
+
+all.cor <- rbind(c(c.pred.score$conf.int, c.pred.score$estimate, c.pred.score$p.value),
+                    c(c.sdiv.age$conf.int, c.sdiv.age$estimate, c.sdiv.age$p.value),
+                    c(c.sdiv.cow$conf.int, c.sdiv.cow$estimate, c.sdiv.cow$p.value))
+
+colnames(all.cor) <- c("ci_low", "ci_high", "r(cor)", "p_val")
+
+write.csv(all.cor, "output/5_RF_regression_model/correlations.csv")
+
 # Plot the results
 ##################
 
@@ -159,6 +192,8 @@ pred.val.plot <- ggplot() +
     ylab("Weighted Score") + 
     xlab("Cow ID")
 
+
+pred.val.plot
 
 # Save plots
 ggsave(filename = "output/5_RF_regression_model/pred_reg_values.pdf", pred.val.plot, width = 7, height = 4)
